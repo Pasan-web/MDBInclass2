@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Login</h1>
+        Nick name:<input type="text" id="nickname"/>
+
+        Enter a message: <input type="text" id="msg"/><button onclick="sendMessage();">Send</button>
+
+        <script type="text/javascript">
+            function sendMessage() {
+
+                var name = document.getElementById("nickname").value;
+                var msg = document.getElementById("msg").value;
+
+                var request = new XMLHttpRequest();
+                request.onreadystatechange = function () {
+                    if (request.status == 200 && request.readyState == 4) {
+
+                        var response = request.responseText;
+                        alert(response);
+                    }
+
+                }
+
+                request.open("GET", "message?name=" + name + "&msg=" + msg, "true");
+                request.send();
+            }
+            //setInterval(readMessage, 1000);
+            function readMessage() {
+
+                var request = new XMLHttpRequest();
+                request.onreadystatechange = function () {
+                    if (request.status == 200 && request.readyState == 4) {
+
+                        var response = request.responseText;
+                     
+                    }
+
+                }
+
+                request.open("GET", "readmessage", "true");
+                request.send();
+
+
+            }
+        </script>
+    </body>
+
+</html>
